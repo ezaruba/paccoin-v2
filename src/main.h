@@ -34,8 +34,8 @@ static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 static const unsigned int MAX_ORPHAN_TRANSACTIONS = MAX_BLOCK_SIZE/100;
 static const int64 MIN_TX_FEE = CENT;
 static const int64 MIN_RELAY_TX_FEE = CENT;
-static const int64 MAX_MONEY = 100000000000 * COIN; //100 Billion
-static const int64 MAX_MINT_PROOF_OF_WORK = 9999 * COIN;
+static const int64 MAX_MONEY = 100000000000000 * COIN; //100 Trillion
+static const int64 MAX_MINT_PROOF_OF_WORK = 500 * COIN;
 static const int64 MIN_TXOUT_AMOUNT = MIN_TX_FEE;
 inline bool MoneyRange(int64 nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 static const int COINBASE_MATURITY_PPC = 500;
