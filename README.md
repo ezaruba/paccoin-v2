@@ -3,7 +3,7 @@ Paccoin v2 Official Development Repo
 ==================================
 
 ### What is Paccoin v2 (PAC)?
-[Paccoin](http://paccoin.net/) (abbreviated PAC), also known as PACCoin is a peercoin clone which was the first [cryptocurrency](https://en.wikipedia.org/wiki/Cryptocurrency) design introducing [proof-of-stake consensus](http://peercoin.net/bin/peercoin-paper.pdf) as a security model, with a combined [proof-of-stake](http://peercoin.net/bin/peercoin-paper.pdf)/[proof-of-work](https://en.wikipedia.org/wiki/Proof-of-work_system) minting system. Peercoin is based on [paccoin](http://paccoin.org/en/), while introducing many important innovations to cryptocurrency field including new security model, energy efficiency, better minting model and more adaptive response to rapid change in network computation power.
+[Paccoin](http://paccoin.net/) (abbreviated PAC), also known as Paccoin is a peercoin clone which was the first [cryptocurrency](https://en.wikipedia.org/wiki/Cryptocurrency) design introducing [proof-of-stake consensus](http://peercoin.net/bin/peercoin-paper.pdf) as a security model, with a combined [proof-of-stake](http://peercoin.net/bin/peercoin-paper.pdf)/[proof-of-work](https://en.wikipedia.org/wiki/Proof-of-work_system) minting system. Peercoin is based on [bitcoin](http://bitcoin.org/en/), while introducing many important innovations to cryptocurrency field including new security model, energy efficiency, better minting model and more adaptive response to rapid change in network computation power.
 ### Paccoin Resources
 * Client and Source:
 [Source Code](https://github.com/wmcorless/paccoin-v2),
