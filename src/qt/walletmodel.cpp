@@ -73,7 +73,7 @@ void WalletModel::updateAddressList()
 
 bool WalletModel::validateAddress(const QString &address)
 {
-    CBitcoinAddress addressParsed(address.toStdString());
+    CPaccoinAddress addressParsed(address.toStdString());
     return addressParsed.IsValid();
 }
 
@@ -127,7 +127,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
         foreach(const SendCoinsRecipient &rcp, recipients)
         {
             CScript scriptPubKey;
-            scriptPubKey.SetBitcoinAddress(rcp.address.toStdString());
+            scriptPubKey.SetPaccoinAddress(rcp.address.toStdString());
             vecSend.push_back(make_pair(scriptPubKey, rcp.amount));
         }
 
@@ -163,7 +163,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(const QList<SendCoinsRecipie
         {
             LOCK(wallet->cs_wallet);
 
-            std::map<CBitcoinAddress, std::string>::iterator mi = wallet->mapAddressBook.find(strAddress);
+            std::map<CPaccoinAddress, std::string>::iterator mi = wallet->mapAddressBook.find(strAddress);
 
             // Check if we have a new address or an updated label
             if (mi == wallet->mapAddressBook.end() || mi->second != strLabel)

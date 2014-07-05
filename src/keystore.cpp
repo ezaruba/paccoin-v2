@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2009-2012 The Paccoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "keystore.h"
 #include "script.h"
 
-bool CKeyStore::GetPubKey(const CBitcoinAddress &address, std::vector<unsigned char> &vchPubKeyOut) const
+bool CKeyStore::GetPubKey(const CPaccoinAddress &address, std::vector<unsigned char> &vchPubKeyOut) const
 {
     CKey key;
     if (!GetKey(address, key))
@@ -21,7 +21,7 @@ bool CBasicKeyStore::AddKey(const CKey& key)
     CSecret secret = key.GetSecret(fCompressed);
     {
         LOCK(cs_KeyStore);
-        mapKeys[CBitcoinAddress(key.GetPubKey())] = make_pair(secret, fCompressed);
+        mapKeys[CPaccoinAddress(key.GetPubKey())] = make_pair(secret, fCompressed);
     }
     return true;
 }
@@ -132,12 +132,12 @@ bool CCryptoKeyStore::AddCryptedKey(const std::vector<unsigned char> &vchPubKey,
         if (!SetCrypted())
             return false;
 
-        mapCryptedKeys[CBitcoinAddress(vchPubKey)] = make_pair(vchPubKey, vchCryptedSecret);
+        mapCryptedKeys[CPaccoinAddress(vchPubKey)] = make_pair(vchPubKey, vchCryptedSecret);
     }
     return true;
 }
 
-bool CCryptoKeyStore::GetKey(const CBitcoinAddress &address, CKey& keyOut) const
+bool CCryptoKeyStore::GetKey(const CPaccoinAddress &address, CKey& keyOut) const
 {
     {
         LOCK(cs_KeyStore);
@@ -162,7 +162,7 @@ bool CCryptoKeyStore::GetKey(const CBitcoinAddress &address, CKey& keyOut) const
     return false;
 }
 
-bool CCryptoKeyStore::GetPubKey(const CBitcoinAddress &address, std::vector<unsigned char>& vchPubKeyOut) const
+bool CCryptoKeyStore::GetPubKey(const CPaccoinAddress &address, std::vector<unsigned char>& vchPubKeyOut) const
 {
     {
         LOCK(cs_KeyStore);

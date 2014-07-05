@@ -1,9 +1,9 @@
-// Copyright (c) 2012 The Bitcoin developers
-// Copyright (c) 2012-2013 The PPCoin developers
+// Copyright (c) 2012 The Paccoin developers
+// Copyright (c) 2012-2013 The PACCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_VERSION_H
-#define BITCOIN_VERSION_H
+#ifndef PACCOIN_VERSION_H
+#define PACCOIN_VERSION_H
 
 #include <string>
 
@@ -27,17 +27,17 @@ extern const std::string CLIENT_NAME;
 extern const std::string CLIENT_BUILD;
 extern const std::string CLIENT_DATE;
 
-// ppcoin version - intended for display purpose ONLY
-#define PPCOIN_VERSION_MAJOR       0
-#define PPCOIN_VERSION_MINOR       4
-#define PPCOIN_VERSION_REVISION    0
-#define PPCOIN_VERSION_BUILD       0
+// paccoin version - intended for display purpose ONLY
+#define PAcCOIN_VERSION_MAJOR       0
+#define PAcCOIN_VERSION_MINOR       4
+#define PAcCOIN_VERSION_REVISION    0
+#define PAcCOIN_VERSION_BUILD       0
 
-static const int PPCOIN_VERSION =
-                           1000000 * PPCOIN_VERSION_MAJOR
-                         +   10000 * PPCOIN_VERSION_MINOR
-                         +     100 * PPCOIN_VERSION_REVISION
-                         +       1 * PPCOIN_VERSION_BUILD;
+static const int PAcCOIN_VERSION =
+                           1000000 * PAcCOIN_VERSION_MAJOR
+                         +   10000 * PAcCOIN_VERSION_MINOR
+                         +     100 * PAcCOIN_VERSION_REVISION
+                         +       1 * PAcCOIN_VERSION_BUILD;
 
 //
 // network protocol versioning
@@ -46,7 +46,7 @@ static const int PPCOIN_VERSION =
 static const int PROTOCOL_VERSION = 60004;
 
 // earlier versions not supported as of Feb 2012, and are disconnected
-// NOTE: as of bitcoin v0.6 message serialization (vSend, vRecv) still
+// NOTE: as of paccoin v0.6 message serialization (vSend, vRecv) still
 // uses MIN_PROTO_VERSION(209), where message format uses PROTOCOL_VERSION
 static const int MIN_PROTO_VERSION = 209;
 

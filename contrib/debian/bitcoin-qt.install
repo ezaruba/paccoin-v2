@@ -1,6 +1,6 @@
-debian/bin/bitcoin-qt usr/bin
-bitcoin-qt usr/lib/bitcoin
-share/pixmaps/bitcoin32.xpm usr/share/pixmaps
-share/pixmaps/bitcoin80.xpm usr/share/pixmaps
-debian/bitcoin-qt.desktop usr/share/applications
-debian/bitcoin-qt.protocol usr/share/kde4/services/
+debian/bin/paccoin-qt usr/bin
+paccoin-qt usr/lib/paccoin
+share/pixmaps/paccoin32.xpm usr/share/pixmaps
+share/pixmaps/paccoin80.xpm usr/share/pixmaps
+debian/paccoin-qt.desktop usr/share/applications
+debian/paccoin-qt.protocol usr/share/kde4/services/

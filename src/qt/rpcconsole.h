@@ -8,7 +8,7 @@ namespace Ui {
 }
 class ClientModel;
 
-/** Local bitcoin RPC console. */
+/** Local paccoin RPC console. */
 class RPCConsole: public QDialog
 {
     Q_OBJECT

@@ -1,9 +1,9 @@
-// Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2013 The PPCoin developers
+// Copyright (c) 2009-2012 The Paccoin developers
+// Copyright (c) 2011-2013 The PACCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_CHECKPOINT_H
-#define  BITCOIN_CHECKPOINT_H
+#ifndef PACCOIN_CHECKPOINT_H
+#define  PACCOIN_CHECKPOINT_H
 
 #include <map>
 #include "net.h"
@@ -48,7 +48,7 @@ namespace Checkpoints
     bool IsSyncCheckpointTooOld(unsigned int nSeconds);
 }
 
-// ppcoin: synchronized checkpoint
+// paccoin: synchronized checkpoint
 class CUnsignedSyncCheckpoint
 {
 public:

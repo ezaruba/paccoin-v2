@@ -1,8 +1,8 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_UI_INTERFACE_H
-#define BITCOIN_UI_INTERFACE_H
+#ifndef PACCOIN_UI_INTERFACE_H
+#define PACCOIN_UI_INTERFACE_H
 
 #include <string>
 #include "util.h" // for int64
@@ -36,7 +36,7 @@
 // Force blocking, modal message box dialog (not just notification)
 #define wxMODAL                 0x00040000
 
-/* These UI communication functions are implemented in bitcoin.cpp (for ui) and noui.cpp (no ui) */
+/* These UI communication functions are implemented in paccoin.cpp (for ui) and noui.cpp (no ui) */
 
 extern int ThreadSafeMessageBox(const std::string& message, const std::string& caption, int style=wxOK);
 extern bool ThreadSafeAskFee(int64 nFeeRequired, const std::string& strCaption);

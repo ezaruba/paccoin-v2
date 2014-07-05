@@ -1,5 +1,5 @@
 # Copyright (c) 2009-2010 Satoshi Nakamoto
-# Copyright (c) 2012 The PPCoin developers
+# Copyright (c) 2012 The PACCoin developers
 # Distributed under the MIT/X11 software license, see the accompanying
 # file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,10 +52,10 @@
 #     mkdir miniupnpc
 #     cp *.h miniupnpc/
 #
-# - Build ppcoind.exe
+# - Build paccoind.exe
 #   in MinGW MSYS
-#     cd ppcoin/src
-#     make ppcoind.exe -f makefile.mingw USE_UPNP=1
+#     cd paccoin/src
+#     make paccoind.exe -f makefile.mingw USE_UPNP=1
 #
 #
 
@@ -112,7 +112,7 @@ OBJS= \
     obj/main.o \
     obj/net.o \
     obj/protocol.o \
-    obj/bitcoinrpc.o \
+    obj/paccoinrpc.o \
     obj/rpcdump.o \
     obj/script.o \
     obj/util.o \
@@ -122,12 +122,12 @@ OBJS= \
     obj/kernel.o
 
 
-all: ppcoind.exe
+all: paccoind.exe
 
 obj/%.o: %.cpp $(HEADERS)
 	g++ -c $(CFLAGS) -o $@ $<
 
-ppcoind.exe: $(OBJS:obj/%=obj/%)
+paccoind.exe: $(OBJS:obj/%=obj/%)
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ $(LIBS)
 
 TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
@@ -135,11 +135,11 @@ TESTOBJS := $(patsubst test/%.cpp,obj-test/%.o,$(wildcard test/*.cpp))
 obj-test/%.o: test/%.cpp $(HEADERS)
 	g++ -c $(TESTDEFS) $(CFLAGS) -o $@ $<
 
-test_bitcoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
+test_paccoin.exe: $(TESTOBJS) $(filter-out obj/init.o,$(OBJS:obj/%=obj/%))
 	g++ $(CFLAGS) -o $@ $(LIBPATHS) $^ -lboost_unit_test_framework $(LIBS)
 
 clean:
-	-del /Q ppcoind test_bitcoin
+	-del /Q paccoind test_paccoin
 	-del /Q obj\*
 	-del /Q obj-test\*
 	-del /Q build.h

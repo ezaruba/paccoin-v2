@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2012 The Bitcoin developers
+// Copyright (c) 2009-2012 The Paccoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file license.txt or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@ using namespace std;
 
 void ipcShutdown()
 {
-    message_queue::remove(BITCOINURI_QUEUE_NAME);
+    message_queue::remove(PACCOINURI_QUEUE_NAME);
 }
 
 void ipcThread(void* parg)
@@ -47,7 +47,7 @@ void ipcThread(void* parg)
 void ipcInit()
 {
 #ifdef MAC_OSX
-    // TODO: implement bitcoin: URI handling the Mac Way
+    // TODO: implement paccoin: URI handling the Mac Way
     return;
 #endif
 #ifdef WIN32
@@ -62,9 +62,9 @@ void ipcInit()
     size_t nSize;
     unsigned int nPriority;
     try {
-        mq = new message_queue(open_or_create, BITCOINURI_QUEUE_NAME, 2, 256);
+        mq = new message_queue(open_or_create, PACCOINURI_QUEUE_NAME, 2, 256);
 
-        // Make sure we don't lose any bitcoin: URIs
+        // Make sure we don't lose any paccoin: URIs
         for (int i = 0; i < 2; i++)
         {
             ptime d = boost::posix_time::microsec_clock::universal_time() + millisec(1);
@@ -76,9 +76,9 @@ void ipcInit()
                 break;
         }
 
-        // Make sure only one bitcoin instance is listening
-        message_queue::remove(BITCOINURI_QUEUE_NAME);
-        mq = new message_queue(open_or_create, BITCOINURI_QUEUE_NAME, 2, 256);
+        // Make sure only one paccoin instance is listening
+        message_queue::remove(PACCOINURI_QUEUE_NAME);
+        mq = new message_queue(open_or_create, PACCOINURI_QUEUE_NAME, 2, 256);
     }
     catch (interprocess_exception &ex) {
         return;

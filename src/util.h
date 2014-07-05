@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2012 The PPCoin developers
+// Copyright (c) 2009-2012 The Paccoin developers
+// Copyright (c) 2012 The PACCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_UTIL_H
-#define BITCOIN_UTIL_H
+#ifndef PACCOIN_UTIL_H
+#define PACCOIN_UTIL_H
 
 #include "uint256.h"
 
@@ -674,9 +674,9 @@ public:
 // Note: It turns out we might have been able to use boost::thread
 // by using TerminateThread(boost::thread.native_handle(), 0);
 #ifdef WIN32
-typedef HANDLE bitcoin_pthread_t;
+typedef HANDLE paccoin_pthread_t;
 
-inline bitcoin_pthread_t CreateThread(void(*pfn)(void*), void* parg, bool fWantHandle=false)
+inline paccoin_pthread_t CreateThread(void(*pfn)(void*), void* parg, bool fWantHandle=false)
 {
     DWORD nUnused = 0;
     HANDLE hthread =
@@ -690,12 +690,12 @@ inline bitcoin_pthread_t CreateThread(void(*pfn)(void*), void* parg, bool fWantH
     if (hthread == NULL)
     {
         printf("Error: CreateThread() returned %d\n", GetLastError());
-        return (bitcoin_pthread_t)0;
+        return (paccoin_pthread_t)0;
     }
     if (!fWantHandle)
     {
         CloseHandle(hthread);
-        return (bitcoin_pthread_t)-1;
+        return (paccoin_pthread_t)-1;
     }
     return hthread;
 }

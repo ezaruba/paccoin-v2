@@ -1,9 +1,9 @@
 #include "optionsdialog.h"
 #include "optionsmodel.h"
-#include "bitcoinamountfield.h"
+#include "paccoinamountfield.h"
 #include "monitoreddatamapper.h"
 #include "guiutil.h"
-#include "bitcoinunits.h"
+#include "paccoinunits.h"
 #include "qvaluecombobox.h"
 
 #include <QHBoxLayout>
@@ -29,7 +29,7 @@ public:
 
     void setMapper(MonitoredDataMapper *mapper);
 private:
-    QCheckBox *bitcoin_at_startup;
+    QCheckBox *paccoin_at_startup;
 #ifndef Q_WS_MAC
     QCheckBox *minimize_to_tray;
 #endif
@@ -41,7 +41,7 @@ private:
     QCheckBox *detach_database;
     QLineEdit *proxy_ip;
     QLineEdit *proxy_port;
-    BitcoinAmountField *fee_edit;
+    PaccoinAmountField *fee_edit;
 
 signals:
 
@@ -168,9 +168,9 @@ MainOptionsPage::MainOptionsPage(QWidget *parent):
 {
     QVBoxLayout *layout = new QVBoxLayout();
 
-    bitcoin_at_startup = new QCheckBox(tr("&Start PPCoin on window system startup"));
-    bitcoin_at_startup->setToolTip(tr("Automatically start PPCoin after the computer is turned on"));
-    layout->addWidget(bitcoin_at_startup);
+    paccoin_at_startup = new QCheckBox(tr("&Start PACCoin on window system startup"));
+    paccoin_at_startup->setToolTip(tr("Automatically start PACCoin after the computer is turned on"));
+    layout->addWidget(paccoin_at_startup);
 
 #ifndef Q_WS_MAC
     minimize_to_tray = new QCheckBox(tr("&Minimize to the tray instead of the taskbar"));
@@ -183,7 +183,7 @@ MainOptionsPage::MainOptionsPage(QWidget *parent):
 #endif
 
     map_port_upnp = new QCheckBox(tr("Map port using &UPnP"));
-    map_port_upnp->setToolTip(tr("Automatically open the PPCoin client port on the router. This only works when your router supports UPnP and it is enabled."));
+    map_port_upnp->setToolTip(tr("Automatically open the PACCoin client port on the router. This only works when your router supports UPnP and it is enabled."));
     layout->addWidget(map_port_upnp);
 
     connect_socks4 = new QCheckBox(tr("&Connect through SOCKS4 proxy:"));
@@ -221,7 +221,7 @@ MainOptionsPage::MainOptionsPage(QWidget *parent):
     fee_hbox->addSpacing(18);
     QLabel *fee_label = new QLabel(tr("Pay transaction &fee"));
     fee_hbox->addWidget(fee_label);
-    fee_edit = new BitcoinAmountField();
+    fee_edit = new PaccoinAmountField();
 
     fee_label->setBuddy(fee_edit);
     fee_hbox->addWidget(fee_edit);
@@ -248,7 +248,7 @@ MainOptionsPage::MainOptionsPage(QWidget *parent):
 void MainOptionsPage::setMapper(MonitoredDataMapper *mapper)
 {
     // Map model to widgets
-    mapper->addMapping(bitcoin_at_startup, OptionsModel::StartAtStartup);
+    mapper->addMapping(paccoin_at_startup, OptionsModel::StartAtStartup);
 #ifndef Q_WS_MAC
     mapper->addMapping(minimize_to_tray, OptionsModel::MinimizeToTray);
 #endif
@@ -273,7 +273,7 @@ DisplayOptionsPage::DisplayOptionsPage(QWidget *parent):
     QLabel *unit_label = new QLabel(tr("&Unit to show amounts in: "));
     unit_hbox->addWidget(unit_label);
     unit = new QValueComboBox(this);
-    unit->setModel(new BitcoinUnits(this));
+    unit->setModel(new PaccoinUnits(this));
     unit->setToolTip(tr("Choose the default subdivision unit to show in the interface, and when sending coins"));
 
     unit_label->setBuddy(unit);
@@ -282,7 +282,7 @@ DisplayOptionsPage::DisplayOptionsPage(QWidget *parent):
     layout->addLayout(unit_hbox);
 
     display_addresses = new QCheckBox(tr("&Display addresses in transaction list"), this);
-    display_addresses->setToolTip(tr("Whether to show PPCoin addresses in the transaction list"));
+    display_addresses->setToolTip(tr("Whether to show PACCoin addresses in the transaction list"));
     layout->addWidget(display_addresses);
 
     layout->addStretch();

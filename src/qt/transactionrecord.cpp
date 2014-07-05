@@ -42,7 +42,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
 
     if (showTransaction(wtx))
     {
-        if (wtx.IsCoinStake()) // ppcoin: coinstake transaction
+        if (wtx.IsCoinStake()) // paccoin: coinstake transaction
         {
             parts.append(TransactionRecord(hash, nTime, TransactionRecord::StakeMint, "", -nDebit, wtx.GetValueOut()));
         }
@@ -56,7 +56,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                 if(wallet->IsMine(txout))
                 {
                     TransactionRecord sub(hash, nTime);
-                    CBitcoinAddress address;
+                    CPaccoinAddress address;
                     sub.idx = parts.size(); // sequence number
                     sub.credit = txout.nValue;
                     if (wtx.IsCoinBase())
@@ -66,7 +66,7 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                     }
                     else if (ExtractAddress(txout.scriptPubKey, address) && wallet->HaveKey(address))
                     {
-                        // Received by Bitcoin Address
+                        // Received by Paccoin Address
                         sub.type = TransactionRecord::RecvWithAddress;
                         sub.address = address.ToString();
                     }
@@ -119,10 +119,10 @@ QList<TransactionRecord> TransactionRecord::decomposeTransaction(const CWallet *
                         continue;
                     }
 
-                    CBitcoinAddress address;
+                    CPaccoinAddress address;
                     if (ExtractAddress(txout.scriptPubKey, address))
                     {
-                        // Sent to Bitcoin Address
+                        // Sent to Paccoin Address
                         sub.type = TransactionRecord::SendToAddress;
                         sub.address = address.ToString();
                     }

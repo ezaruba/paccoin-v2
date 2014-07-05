@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2011-2012 The PPCoin developers
+// Copyright (c) 2009-2012 The Paccoin developers
+// Copyright (c) 2011-2012 The PACCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef BITCOIN_DB_H
-#define BITCOIN_DB_H
+#ifndef PACCOIN_DB_H
+#define PACCOIN_DB_H
 
 #include "main.h"
 
@@ -324,4 +324,4 @@ public:
 bool LoadAddresses();
 
 
-#endif // BITCOIN_DB_H
+#endif // PACCOIN_DB_H

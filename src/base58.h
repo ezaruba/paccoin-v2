@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin Developers
-// Copyright (c) 2011-2012 The PPCoin developers
+// Copyright (c) 2009-2012 The Paccoin Developers
+// Copyright (c) 2011-2012 The PACCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,8 +13,8 @@
 // - E-mail usually won't line-break if there's no punctuation to break at.
 // - Doubleclicking selects the whole number as one word if it's all alphanumeric.
 //
-#ifndef BITCOIN_BASE58_H
-#define BITCOIN_BASE58_H
+#ifndef PACCOIN_BASE58_H
+#define PACCOIN_BASE58_H
 
 #include <string>
 #include <vector>
@@ -253,19 +253,19 @@ public:
     bool operator> (const CBase58Data& b58) const { return CompareTo(b58) >  0; }
 };
 
-/** base58-encoded bitcoin addresses.
+/** base58-encoded paccoin addresses.
  * Public-key-hash-addresses have version 55 (or 111 testnet).
  * The data vector contains RIPEMD160(SHA256(pubkey)), where pubkey is the serialized public key.
  * Script-hash-addresses have version 117 (or 196 testnet).
  * The data vector contains RIPEMD160(SHA256(cscript)), where cscript is the serialized redemption script.
  */
-class CBitcoinAddress : public CBase58Data
+class CPaccoinAddress : public CBase58Data
 {
 public:
     enum
     {
-        PUBKEY_ADDRESS = 55,  // ppcoin: addresses begin with 'P'
-        SCRIPT_ADDRESS = 117, // ppcoin: addresses begin with 'p'
+        PUBKEY_ADDRESS = 55,  // paccoin: addresses begin with 'P'
+        SCRIPT_ADDRESS = 117, // paccoin: addresses begin with 'p'
         PUBKEY_ADDRESS_TEST = 111,
         SCRIPT_ADDRESS_TEST = 196,
     };
@@ -325,26 +325,26 @@ public:
         return nVersion == SCRIPT_ADDRESS;
     }
 
-    CBitcoinAddress()
+    CPaccoinAddress()
     {
     }
 
-    CBitcoinAddress(uint160 hash160In)
+    CPaccoinAddress(uint160 hash160In)
     {
         SetHash160(hash160In);
     }
 
-    CBitcoinAddress(const std::vector<unsigned char>& vchPubKey)
+    CPaccoinAddress(const std::vector<unsigned char>& vchPubKey)
     {
         SetPubKey(vchPubKey);
     }
 
-    CBitcoinAddress(const std::string& strAddress)
+    CPaccoinAddress(const std::string& strAddress)
     {
         SetString(strAddress);
     }
 
-    CBitcoinAddress(const char* pszAddress)
+    CPaccoinAddress(const char* pszAddress)
     {
         SetString(pszAddress);
     }
@@ -359,13 +359,13 @@ public:
 };
 
 /** A base58-encoded secret key */
-class CBitcoinSecret : public CBase58Data
+class CPaccoinSecret : public CBase58Data
 {
 public:
     void SetSecret(const CSecret& vchSecret, bool fCompressed)
     { 
         assert(vchSecret.size() == 32);
-        SetData(128 + (fTestNet ? CBitcoinAddress::PUBKEY_ADDRESS_TEST : CBitcoinAddress::PUBKEY_ADDRESS), &vchSecret[0], vchSecret.size());
+        SetData(128 + (fTestNet ? CPaccoinAddress::PUBKEY_ADDRESS_TEST : CPaccoinAddress::PUBKEY_ADDRESS), &vchSecret[0], vchSecret.size());
         if (fCompressed)
             vchData.push_back(1);
     }
@@ -384,10 +384,10 @@ public:
         bool fExpectTestNet = false;
         switch(nVersion)
         {
-             case (128 + CBitcoinAddress::PUBKEY_ADDRESS):
+             case (128 + CPaccoinAddress::PUBKEY_ADDRESS):
                 break;
 
-            case (128 + CBitcoinAddress::PUBKEY_ADDRESS_TEST):
+            case (128 + CPaccoinAddress::PUBKEY_ADDRESS_TEST):
                 fExpectTestNet = true;
                 break;
 
@@ -407,12 +407,12 @@ public:
         return SetString(strSecret.c_str());
     }
 
-    CBitcoinSecret(const CSecret& vchSecret, bool fCompressed)
+    CPaccoinSecret(const CSecret& vchSecret, bool fCompressed)
     {
         SetSecret(vchSecret, fCompressed);
     }
 
-    CBitcoinSecret()
+    CPaccoinSecret()
     {
     }
 };

@@ -31,14 +31,14 @@ void dumpKeyInfo(uint256 privkey)
     {
         bool fCompressed = nCompressed == 1;
         printf("  * %s:\n", fCompressed ? "compressed" : "uncompressed");
-        CBitcoinSecret bsecret;
+        CPaccoinSecret bsecret;
         bsecret.SetSecret(secret, fCompressed);
         printf("    * secret (base58): %s\n", bsecret.ToString().c_str());
         CKey key;
         key.SetSecret(secret, fCompressed);
         vector<unsigned char> vchPubKey = key.GetPubKey();
         printf("    * pubkey (hex): %s\n", HexStr(vchPubKey).c_str());
-        printf("    * address (base58): %s\n", CBitcoinAddress(vchPubKey).ToString().c_str());
+        printf("    * address (base58): %s\n", CPaccoinAddress(vchPubKey).ToString().c_str());
     }
 }
 #endif
@@ -48,7 +48,7 @@ BOOST_AUTO_TEST_SUITE(key_tests)
 
 BOOST_AUTO_TEST_CASE(key_test1)
 {
-    CBitcoinSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
+    CPaccoinSecret bsecret1, bsecret2, bsecret1C, bsecret2C, baddress1;
     BOOST_CHECK( bsecret1.SetString (strSecret1));
     BOOST_CHECK( bsecret2.SetString (strSecret2));
     BOOST_CHECK( bsecret1C.SetString(strSecret1C));
@@ -74,10 +74,10 @@ BOOST_AUTO_TEST_CASE(key_test1)
     key1C.SetSecret(secret1, true);
     key2C.SetSecret(secret2, true);
 
-    BOOST_CHECK(CBitcoinAddress(key1.GetPubKey ()).ToString() == "1QFqqMUD55ZV3PJEJZtaKCsQmjLT6JkjvJ");
-    BOOST_CHECK(CBitcoinAddress(key2.GetPubKey ()).ToString() == "1F5y5E5FMc5YzdJtB9hLaUe43GDxEKXENJ");
-    BOOST_CHECK(CBitcoinAddress(key1C.GetPubKey()).ToString() == "1NoJrossxPBKfCHuJXT4HadJrXRE9Fxiqs");
-    BOOST_CHECK(CBitcoinAddress(key2C.GetPubKey()).ToString() == "1CRj2HyM1CXWzHAXLQtiGLyggNT9WQqsDs");
+    BOOST_CHECK(CPaccoinAddress(key1.GetPubKey ()).ToString() == "1QFqqMUD55ZV3PJEJZtaKCsQmjLT6JkjvJ");
+    BOOST_CHECK(CPaccoinAddress(key2.GetPubKey ()).ToString() == "1F5y5E5FMc5YzdJtB9hLaUe43GDxEKXENJ");
+    BOOST_CHECK(CPaccoinAddress(key1C.GetPubKey()).ToString() == "1NoJrossxPBKfCHuJXT4HadJrXRE9Fxiqs");
+    BOOST_CHECK(CPaccoinAddress(key2C.GetPubKey()).ToString() == "1CRj2HyM1CXWzHAXLQtiGLyggNT9WQqsDs");
 
     for (int n=0; n<16; n++)
     {

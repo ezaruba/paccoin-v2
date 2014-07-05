@@ -68,7 +68,7 @@ void MessagePage::on_signMessage_clicked()
 {
     QString address = ui->signFrom->text();
 
-    CBitcoinAddress addr(address.toStdString());
+    CPaccoinAddress addr(address.toStdString());
     if (!addr.IsValid())
     {
         QMessageBox::critical(this, tr("Error signing"), tr("%1 is not a valid address.").arg(address),
@@ -103,5 +103,5 @@ void MessagePage::on_signMessage_clicked()
     }
 
     ui->signature->setText(QString::fromStdString(EncodeBase64(&vchSig[0], vchSig.size())));
-    ui->signature->setFont(GUIUtil::bitcoinAddressFont());
+    ui->signature->setFont(GUIUtil::paccoinAddressFont());
 }

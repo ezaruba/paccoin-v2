@@ -65,9 +65,9 @@ BOOST_AUTO_TEST_CASE(sign)
     // different keys, straight/P2SH, pubkey/pubkeyhash
     CScript standardScripts[4];
     standardScripts[0] << key[0].GetPubKey() << OP_CHECKSIG;
-    standardScripts[1].SetBitcoinAddress(key[1].GetPubKey());
+    standardScripts[1].SetPaccoinAddress(key[1].GetPubKey());
     standardScripts[2] << key[1].GetPubKey() << OP_CHECKSIG;
-    standardScripts[3].SetBitcoinAddress(key[2].GetPubKey());
+    standardScripts[3].SetPaccoinAddress(key[2].GetPubKey());
     CScript evalScripts[4];
     for (int i = 0; i < 4; i++)
     {
@@ -154,7 +154,7 @@ BOOST_AUTO_TEST_CASE(set)
     }
 
     CScript inner[4];
-    inner[0].SetBitcoinAddress(key[0].GetPubKey());
+    inner[0].SetPaccoinAddress(key[0].GetPubKey());
     inner[1].SetMultisig(2, std::vector<CKey>(keys.begin(), keys.begin()+2));
     inner[2].SetMultisig(1, std::vector<CKey>(keys.begin(), keys.begin()+2));
     inner[3].SetMultisig(2, std::vector<CKey>(keys.begin(), keys.begin()+3));
@@ -258,7 +258,7 @@ BOOST_AUTO_TEST_CASE(AreInputsStandard)
     txFrom.vout.resize(6);
 
     // First three are standard:
-    CScript pay1; pay1.SetBitcoinAddress(key[0].GetPubKey());
+    CScript pay1; pay1.SetPaccoinAddress(key[0].GetPubKey());
     keystore.AddCScript(pay1);
     CScript payScriptHash1; payScriptHash1.SetPayToScriptHash(pay1);
     CScript pay1of3; pay1of3.SetMultisig(1, keys);
@@ -284,7 +284,7 @@ BOOST_AUTO_TEST_CASE(AreInputsStandard)
 
     CTransaction txTo;
     txTo.vout.resize(1);
-    txTo.vout[0].scriptPubKey.SetBitcoinAddress(key[1].GetPubKey());
+    txTo.vout[0].scriptPubKey.SetPaccoinAddress(key[1].GetPubKey());
 
     txTo.vin.resize(3);
     txTo.vin[0].prevout.n = 0;
@@ -311,7 +311,7 @@ BOOST_AUTO_TEST_CASE(AreInputsStandard)
 
     CTransaction txToNonStd;
     txToNonStd.vout.resize(1);
-    txToNonStd.vout[0].scriptPubKey.SetBitcoinAddress(key[1].GetPubKey());
+    txToNonStd.vout[0].scriptPubKey.SetPaccoinAddress(key[1].GetPubKey());
     txToNonStd.vin.resize(2);
     txToNonStd.vin[0].prevout.n = 4;
     txToNonStd.vin[0].prevout.hash = txFrom.GetHash();

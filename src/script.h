@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2012 The PPCoin developers
+// Copyright (c) 2009-2012 The Paccoin developers
+// Copyright (c) 2012 The PACCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
-#ifndef H_BITCOIN_SCRIPT
-#define H_BITCOIN_SCRIPT
+#ifndef H_PACCOIN_SCRIPT
+#define H_PACCOIN_SCRIPT
 
 #include "base58.h"
 
@@ -489,7 +489,7 @@ public:
         return nFound;
     }
 
-    // Pre-version-0.6, Bitcoin always counted CHECKMULTISIGs
+    // Pre-version-0.6, Paccoin always counted CHECKMULTISIGs
     // as 20 sigops. With pay-to-script-hash, that changed:
     // CHECKMULTISIGs serialized in scriptSigs are
     // counted more accurately, assuming they are of the form
@@ -518,10 +518,10 @@ public:
     }
 
 
-    void SetBitcoinAddress(const CBitcoinAddress& address);
-    void SetBitcoinAddress(const std::vector<unsigned char>& vchPubKey)
+    void SetPaccoinAddress(const CPaccoinAddress& address);
+    void SetPaccoinAddress(const std::vector<unsigned char>& vchPubKey)
     {
-        SetBitcoinAddress(CBitcoinAddress(vchPubKey));
+        SetPaccoinAddress(CPaccoinAddress(vchPubKey));
     }
     void SetMultisig(int nRequired, const std::vector<CKey>& keys);
     void SetPayToScriptHash(const CScript& subscript);
@@ -570,8 +570,8 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::v
 int ScriptSigArgsExpected(txnouttype t, const std::vector<std::vector<unsigned char> >& vSolutions);
 bool IsStandard(const CScript& scriptPubKey);
 bool IsMine(const CKeyStore& keystore, const CScript& scriptPubKey);
-bool ExtractAddress(const CScript& scriptPubKey, CBitcoinAddress& addressRet);
-bool ExtractAddresses(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<CBitcoinAddress>& addressRet, int& nRequiredRet);
+bool ExtractAddress(const CScript& scriptPubKey, CPaccoinAddress& addressRet);
+bool ExtractAddresses(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<CPaccoinAddress>& addressRet, int& nRequiredRet);
 bool SignSignature(const CKeyStore& keystore, const CTransaction& txFrom, CTransaction& txTo, unsigned int nIn, int nHashType=SIGHASH_ALL);
 bool VerifySignature(const CTransaction& txFrom, const CTransaction& txTo, unsigned int nIn, bool fValidatePayToScriptHash, int nHashType);
 

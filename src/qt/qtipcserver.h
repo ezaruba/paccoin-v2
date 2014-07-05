@@ -1,4 +1,4 @@
-#define BITCOINURI_QUEUE_NAME "BitcoinURI"
+#define PACCOINURI_QUEUE_NAME "PaccoinURI"
 
 void ipcInit();
 void ipcShutdown();

@@ -1,5 +1,5 @@
-Copyright (c) 2012-2013 PPCoin Developers
-Copyright (c) 2009-2012 Bitcoin Developers
+Copyright (c) 2012-2013 PACCoin Developers
+Copyright (c) 2009-2012 Paccoin Developers
 Distributed under the MIT/X11 software license, see the accompanying file
 license.txt or http://www.opensource.org/licenses/mit-license.php.  This
 product includes software developed by the OpenSSL Project for use in the
@@ -8,14 +8,14 @@ software written by Eric Young (eay@cryptsoft.com) and UPnP software written by
 Thomas Bernard.
 
 
-Mac OS X bitcoind build instructions
+Mac OS X paccoind build instructions
 Laszlo Hanyecz <solar@heliacal.net>
 Douglas Huff <dhuff@jrbobdobbs.org>
 
-Modified for PPCoin by Jeff Larkin <jefflarkin@gmail.com>
+Modified for PACCoin by Jeff Larkin <jefflarkin@gmail.com>
 
 
-See readme-qt.rst for instructions on building PPCoin QT, the
+See readme-qt.rst for instructions on building PACCoin QT, the
 graphical user interface.
 
 Tested on 10.5 and 10.6 intel.  PPC is not supported because it's big-endian.
@@ -30,7 +30,7 @@ but you can get the current version from http://developer.apple.com
 
 1.  Clone the github tree to get the source code:
 
-git clone git@github.com:ppcoin/ppcoin.git ppcoin
+git clone git@github.com:paccoin/paccoin.git paccoin
 
 2.  Download and install MacPorts from http://www.macports.org/
 
@@ -44,16 +44,16 @@ sudo port install boost db48 openssl miniupnpc
 Optionally install qrencode (and set USE_QRCODE=1):
 sudo port install qrencode
 
-4.  Now you should be able to build bitcoind:
+4.  Now you should be able to build paccoind:
 
-cd ppcoin/src
+cd paccoin/src
 make -f makefile.osx
 # To build 64-bit binaies:
 make -f makefile.osx RELEASE=true 64BIT=true
 
 Run:
-  ./ppcoind --help  # for a list of command-line options.
+  ./paccoind --help  # for a list of command-line options.
 Run
-  ./ppcoind -daemon # to start the bitcoin daemon.
+  ./paccoind -daemon # to start the paccoin daemon.
 Run
-  ./ppcoind help # When the daemon is running, to get a list of RPC commands
+  ./paccoind help # When the daemon is running, to get a list of RPC commands

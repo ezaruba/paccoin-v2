@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2012 The Bitcoin developers
-// Copyright (c) 2012 The PPCoin developers
+// Copyright (c) 2009-2012 The Paccoin developers
+// Copyright (c) 2012 The PACCoin developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include <boost/foreach.hpp>
@@ -1208,7 +1208,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
         // Standard tx, sender provides pubkey, receiver adds signature
         mTemplates.insert(make_pair(TX_PUBKEY, CScript() << OP_PUBKEY << OP_CHECKSIG));
 
-        // Bitcoin address tx, sender provides hash of pubkey, receiver provides signature and pubkey
+        // Paccoin address tx, sender provides hash of pubkey, receiver provides signature and pubkey
         mTemplates.insert(make_pair(TX_PUBKEYHASH, CScript() << OP_DUP << OP_HASH160 << OP_PUBKEYHASH << OP_EQUALVERIFY << OP_CHECKSIG));
 
         // Sender provides N pubkeys, receivers provides M signatures
@@ -1311,7 +1311,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
 }
 
 
-bool Sign1(const CBitcoinAddress& address, const CKeyStore& keystore, uint256 hash, int nHashType, CScript& scriptSigRet)
+bool Sign1(const CPaccoinAddress& address, const CKeyStore& keystore, uint256 hash, int nHashType, CScript& scriptSigRet)
 {
     CKey key;
     if (!keystore.GetKey(address, key))
@@ -1333,7 +1333,7 @@ bool SignN(const vector<valtype>& multisigdata, const CKeyStore& keystore, uint2
     for (vector<valtype>::const_iterator it = multisigdata.begin()+1; it != multisigdata.begin()+multisigdata.size()-1; it++)
     {
         const valtype& pubkey = *it;
-        CBitcoinAddress address;
+        CPaccoinAddress address;
         address.SetPubKey(pubkey);
         if (Sign1(address, keystore, hash, nHashType, scriptSigRet))
         {
@@ -1359,7 +1359,7 @@ bool Solver(const CKeyStore& keystore, const CScript& scriptPubKey, uint256 hash
     if (!Solver(scriptPubKey, whichTypeRet, vSolutions))
         return false;
 
-    CBitcoinAddress address;
+    CPaccoinAddress address;
     switch (whichTypeRet)
     {
     case TX_NONSTANDARD:
@@ -1435,7 +1435,7 @@ unsigned int HaveKeys(const vector<valtype>& pubkeys, const CKeyStore& keystore)
     unsigned int nResult = 0;
     BOOST_FOREACH(const valtype& pubkey, pubkeys)
     {
-        CBitcoinAddress address;
+        CPaccoinAddress address;
         address.SetPubKey(pubkey);
         if (keystore.HaveKey(address))
             ++nResult;
@@ -1450,7 +1450,7 @@ bool IsMine(const CKeyStore &keystore, const CScript& scriptPubKey)
     if (!Solver(scriptPubKey, whichType, vSolutions))
         return false;
 
-    CBitcoinAddress address;
+    CPaccoinAddress address;
     switch (whichType)
     {
     case TX_NONSTANDARD:
@@ -1482,7 +1482,7 @@ bool IsMine(const CKeyStore &keystore, const CScript& scriptPubKey)
     return false;
 }
 
-bool ExtractAddress(const CScript& scriptPubKey, CBitcoinAddress& addressRet)
+bool ExtractAddress(const CScript& scriptPubKey, CPaccoinAddress& addressRet)
 {
     vector<valtype> vSolutions;
     txnouttype whichType;
@@ -1508,7 +1508,7 @@ bool ExtractAddress(const CScript& scriptPubKey, CBitcoinAddress& addressRet)
     return false;
 }
 
-bool ExtractAddresses(const CScript& scriptPubKey, txnouttype& typeRet, vector<CBitcoinAddress>& addressRet, int& nRequiredRet)
+bool ExtractAddresses(const CScript& scriptPubKey, txnouttype& typeRet, vector<CPaccoinAddress>& addressRet, int& nRequiredRet)
 {
     addressRet.clear();
     typeRet = TX_NONSTANDARD;
@@ -1521,7 +1521,7 @@ bool ExtractAddresses(const CScript& scriptPubKey, txnouttype& typeRet, vector<C
         nRequiredRet = vSolutions.front()[0];
         for (unsigned int i = 1; i < vSolutions.size()-1; i++)
         {
-            CBitcoinAddress address;
+            CPaccoinAddress address;
             address.SetPubKey(vSolutions[i]);
             addressRet.push_back(address);
         }
@@ -1529,7 +1529,7 @@ bool ExtractAddresses(const CScript& scriptPubKey, txnouttype& typeRet, vector<C
     else
     {
         nRequiredRet = 1;
-        CBitcoinAddress address;
+        CPaccoinAddress address;
         if (typeRet == TX_PUBKEYHASH)
             address.SetHash160(uint160(vSolutions.front()));
         else if (typeRet == TX_SCRIPTHASH)
@@ -1694,7 +1694,7 @@ bool CScript::IsPayToScriptHash() const
             this->at(22) == OP_EQUAL);
 }
 
-void CScript::SetBitcoinAddress(const CBitcoinAddress& address)
+void CScript::SetPaccoinAddress(const CPaccoinAddress& address)
 {
     this->clear();
     if (address.IsScript())

@@ -99,7 +99,7 @@ BOOST_AUTO_TEST_CASE(DoS_checknbits)
 {
     using namespace boost::assign; // for 'map_list_of()'
 
-    // Timestamps,nBits from the bitcoin blockchain.
+    // Timestamps,nBits from the paccoin blockchain.
     // These are the block-chain checkpoint blocks
     typedef std::map<int64, unsigned int> BlockData;
     BlockData chainData =
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
         tx.vin[0].scriptSig << OP_1;
         tx.vout.resize(1);
         tx.vout[0].nValue = 1*CENT;
-        tx.vout[0].scriptPubKey.SetBitcoinAddress(key.GetPubKey());
+        tx.vout[0].scriptPubKey.SetPaccoinAddress(key.GetPubKey());
 
         CDataStream ds(SER_DISK, CLIENT_VERSION);
         ds << tx;
@@ -179,7 +179,7 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
         tx.vin[0].prevout.hash = txPrev.GetHash();
         tx.vout.resize(1);
         tx.vout[0].nValue = 1*CENT;
-        tx.vout[0].scriptPubKey.SetBitcoinAddress(key.GetPubKey());
+        tx.vout[0].scriptPubKey.SetPaccoinAddress(key.GetPubKey());
         SignSignature(keystore, txPrev, tx, 0);
 
         CDataStream ds(SER_DISK, CLIENT_VERSION);
@@ -195,7 +195,7 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
         CTransaction tx;
         tx.vout.resize(1);
         tx.vout[0].nValue = 1*CENT;
-        tx.vout[0].scriptPubKey.SetBitcoinAddress(key.GetPubKey());
+        tx.vout[0].scriptPubKey.SetPaccoinAddress(key.GetPubKey());
         tx.vin.resize(500);
         for (int j = 0; j < tx.vin.size(); j++)
         {
@@ -244,7 +244,7 @@ BOOST_AUTO_TEST_CASE(DoS_checkSig)
         tx.vin[0].scriptSig << OP_1;
         tx.vout.resize(1);
         tx.vout[0].nValue = 1*CENT;
-        tx.vout[0].scriptPubKey.SetBitcoinAddress(key.GetPubKey());
+        tx.vout[0].scriptPubKey.SetPaccoinAddress(key.GetPubKey());
 
         CDataStream ds(SER_DISK, CLIENT_VERSION);
         ds << tx;
@@ -255,7 +255,7 @@ BOOST_AUTO_TEST_CASE(DoS_checkSig)
     CTransaction tx;
     tx.vout.resize(1);
     tx.vout[0].nValue = 1*CENT;
-    tx.vout[0].scriptPubKey.SetBitcoinAddress(key.GetPubKey());
+    tx.vout[0].scriptPubKey.SetPaccoinAddress(key.GetPubKey());
     tx.vin.resize(NPREV);
     for (int j = 0; j < tx.vin.size(); j++)
     {
