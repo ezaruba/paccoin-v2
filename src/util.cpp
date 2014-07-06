@@ -872,7 +872,7 @@ boost::filesystem::path GetDefaultDataDir()
     return pathRet / "PACCoin";
 #else
     // Unix
-    return pathRet / ".paccoin";
+    return pathRet / ".paccoinv2";
 #endif
 #endif
 }
