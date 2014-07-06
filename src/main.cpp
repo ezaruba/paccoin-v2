@@ -3263,7 +3263,7 @@ bool ProcessMessages(CNode* pfrom)
     //  (x) data
     //
 
-    unsigned char pchMessageStart[4];
+    unsigned char pchMessageStart[4] = { 0xe4, 0xe8, 0xe9, 0xe5 };
     GetMessageStart(pchMessageStart);
     static int64 nTimeLastPrintMessageStart = 0;
     if (fDebug && GetBoolArg("-printmessagestart") && nTimeLastPrintMessageStart + 30 < GetAdjustedTime())
