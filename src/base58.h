@@ -264,8 +264,8 @@ class CPaccoinAddress : public CBase58Data
 public:
     enum
     {
-        PUBKEY_ADDRESS = 55,  // paccoin: addresses begin with 'P'
-        SCRIPT_ADDRESS = 117, // paccoin: addresses begin with 'p'
+        PUBKEY_ADDRESS = 24,  
+        SCRIPT_ADDRESS = 30, 
         PUBKEY_ADDRESS_TEST = 111,
         SCRIPT_ADDRESS_TEST = 196,
     };
