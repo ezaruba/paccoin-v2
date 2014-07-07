@@ -366,7 +366,7 @@ namespace Checkpoints
 }
 
 // paccoin: sync-checkpoint master key
-const std::string CSyncCheckpoint::strMasterPubKey = "04c0c707c28533fd5c9f79d2d3a2d80dff259ad8f915241cd14608fb9bc07c74830efe8438f2b272a866b4af5e0c2cc2a9909972aefbd976937e39f46bb38c277c";
+const std::string CSyncCheckpoint::strMasterPubKey = "0489cab128b9f39a3e514a12c07a7644fa1808662195edcf2d4671b1cce76868b7f2f588a9dfad5753be3cd6b8e9518be439c936e2bad93a25bb6d32300fab41c3";
 
 std::string CSyncCheckpoint::strMasterPrivKey = "";
 
