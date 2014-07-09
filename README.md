@@ -1,3 +1,4 @@
+This verision is under development and is non functional yet. Please use the Paccoin repo.
 
 Paccoin v2 Official Development Repo
 ==================================
